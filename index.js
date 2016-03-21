@@ -13,10 +13,12 @@ module.exports = function(homebridge) {
     // configuration
     this.token = config['token'];
     this.name = config['name'];
+    this.offset = config['offset'] || 0;
+    this.period = config['period'] || "day";
 
     this.log = log;
 
-    this.kWh_url = "http://www.energyhive.com/mobile_proxy/getEnergy?token=" + this.token + "&period=day&offset=-60";
+    this.kWh_url = "http://www.energyhive.com/mobile_proxy/getEnergy?token=" + this.token + "&period=" + this.period + "&offset=" + this.offset;
     this.W_url = "http://www.energyhive.com/mobile_proxy/getCurrentValuesSummary?token=" + this.token;
 
   }
