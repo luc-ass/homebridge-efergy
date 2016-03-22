@@ -1,8 +1,8 @@
 # Homebridge-Efergy
-homebridge-plugin for Efergy Engage.
+homebridge-plugin for [EnergyHive](https://www.energyhive.com/) / [Efergy Engage](https://engage.efergy.com/).
 
 #Installation
-Follow the instruction in [NPM](https://www.npmjs.com/package/homebridge) for the homebridge server installation. The plugin is not jet published through [NPM](https://www.npmjs.com/package/homebridge-denon) and should be installed "globally" by typing:
+Follow the instruction in [NPM](https://www.npmjs.com/package/homebridge) for the homebridge server installation. The plugin is not jet published through [NPM](https://www.npmjs.com/package/homebridge-efergy) and should be installed "globally" by typing:
 
 ~~sudo npm install -g homebridge-denon~~
     
@@ -23,10 +23,10 @@ Example:
         "period": "day",
     }
 
-
-Offset and period are optional. They fall back to 0/day.
-Offset is your GMT-Offset (for example -60 for Berlin).
-Period accepts the following values: minute/hour/day/week/month/year
+- Token: can be generated if you log into your EngergyHive-/Engage-Account and navigate to Settings > App tokens
+- Offset: Your GMT-Offset (for example -60 for Berlin).
+- Period: Accepts the following values: minute, hour, day, week, month, year
+- Offset and period are optional. They fall back to 0/day.
 
 ###todo
 - load historic data into Eve.app. Requires some additional digging
