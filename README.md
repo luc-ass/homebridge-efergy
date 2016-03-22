@@ -14,25 +14,15 @@ config.json
 
 Example:
     
+
     {
-      "bridge": {
-          "name": "Homebridge",
-          "username": "CC:22:3D:E3:CE:51",
-          "port": 51826,
-          "pin": "031-45-154"
-      },
-      "description": "This is an example configuration file for homebridge denon plugin",
-      "hint": "Always paste into jsonlint.com validation page before starting your homebridge, saves a lot of frustration",
-      "accessories": [
-          {
-              "accessory": "Efergy",
-              "name": "Efergy",
-              "token": "abcdefghijklmnopqrstuvwxyz123456789",
-              "offset" : "-60"
-              "period": "day",
-          }
-      ]
+        "accessory": "Efergy",
+        "name": "Efergy",
+        "token": "abcdefghijklmnopqrstuvwxyz123456789",
+        "offset" : "-60"
+        "period": "day",
     }
+
 
 Offset and period are optional. They fall back to 0/day.
 Offset is your GMT-Offset (for example -60 for Berlin).
