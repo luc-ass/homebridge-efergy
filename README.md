@@ -29,4 +29,5 @@ Example:
 # To Do
 - remove the name "Power Functions" from source code to keep frontend clean?
 - load historic data into Eve.app. Requires some additional digging
+- add battery status for "Meter-Box-Device"
 
