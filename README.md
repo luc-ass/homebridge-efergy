@@ -10,8 +10,6 @@ Follow the instruction in [NPM](https://www.npmjs.com/package/homebridge) for th
 
 #Configuration
 
-config.json
-
 Example:
     
 
@@ -28,6 +26,7 @@ Example:
 - Period: Accepts the following values: minute, hour, day, week, month, year
 - Offset and period are optional. They fall back to 0/day.
 
-###todo
+# To Do
+- remove the name "Power Functions" from source code to keep frontend clean?
 - load historic data into Eve.app. Requires some additional digging
 
