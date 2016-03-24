@@ -28,6 +28,6 @@ Example:
 
 # To Do
 - remove the name "Power Functions" from source code to keep frontend clean?
-- load historic data into Eve.app. Requires some additional digging
+- load historic data into Eve.app. Requires some additional digging: [Historic data 1](https://github.com/KhaosT/HAP-NodeJS/issues/140) [Historic data 2](https://gist.github.com/0ff/668f4b7753c80ad7b60b) [Eve Serv/Char](https://gist.github.com/gomfunkel/b1a046d729757120907c)
 - add battery status for "Meter-Box-Device"
 
