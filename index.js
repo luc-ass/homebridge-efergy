@@ -27,6 +27,7 @@ module.exports = function(homebridge) {
   // Custom Characteristics and service...
   Efergy.BatteryStatus = function() {
   	// continiue here!
+  	// http://blog.krisdaniels.be/efergy-engage-api-reference-part-1/
   };
   inherits(Efergy.BatteryStatus, Characteristic);
   
