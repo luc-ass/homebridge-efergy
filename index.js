@@ -20,10 +20,16 @@ module.exports = function(homebridge) {
 
     this.kWh_url = "http://www.energyhive.com/mobile_proxy/getEnergy?token=" + this.token + "&period=" + this.period + "&offset=" + this.offset;
     this.W_url = "http://www.energyhive.com/mobile_proxy/getCurrentValuesSummary?token=" + this.token;
+    this.battery_url = "http://www.energyhive.com/mobile_proxy//getStatus?token=" + this.token;
 
   }
 
   // Custom Characteristics and service...
+  Efergy.BatteryStatus = function() {
+  	// continiue here!
+  };
+  inherits(Efergy.BatteryStatus, Characteristic);
+  
   Efergy.PowerConsumption = function() {
     Characteristic.call(this, 'Watts', 'E863F10D-079E-48FF-8F27-9C2605A29F52');
     this.setProps({
