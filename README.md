@@ -4,9 +4,7 @@ homebridge-plugin for [EnergyHive](https://www.energyhive.com/) / [Efergy Engage
 #Installation
 Follow the instruction in [NPM](https://www.npmjs.com/package/homebridge) for the homebridge server installation. The plugin is not jet published through [NPM](https://www.npmjs.com/package/homebridge-efergy) and should be installed "globally" by typing:
 
-~~sudo npm install -g homebridge-denon~~
-    
-    sudo npm install -g https://github.com/luc-ass/homebridge-efergy/
+    sudo npm install -g homebridge-efergy
 
 #Configuration
 
