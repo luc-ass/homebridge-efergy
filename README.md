@@ -1,12 +1,12 @@
 # Homebridge-Efergy
 homebridge-plugin for [EnergyHive](https://www.energyhive.com/) / [Efergy Engage](https://engage.efergy.com/).
 
-#Installation
-Follow the instruction in [NPM](https://www.npmjs.com/package/homebridge) for the homebridge server installation. The plugin is published through [NPM](https://www.npmjs.com/package/homebridge-efergy) and should be installed "globally" by typing:
+## Installation
+Follow the instruction in [NPM](https://www.npmjs.com/package/homebridge) for the homebridge server installation. The plugin is published through [NPM](https://www.npmjs.com/package/homebridge-efergy-mg):
 
-    sudo npm install -g homebridge-efergy
+    sudo npm install homebridge-efergy-mg
 
-#Configuration
+## Configuration
 
 Example:
     
@@ -24,8 +24,9 @@ Example:
 - Period: Accepts the following values: minute, hour, day, week, month, year
 - Offset and period are optional. They fall back to 0/day.
 
-# To Do
-- remove the name "Power Functions" from source code to keep frontend clean?
-- load historic data into Eve.app. Requires some additional digging: [Historic data 1](https://github.com/KhaosT/HAP-NodeJS/issues/140) [Historic data 2](https://gist.github.com/0ff/668f4b7753c80ad7b60b) [Eve Serv/Char](https://gist.github.com/gomfunkel/b1a046d729757120907c). A new way seems to be fakegato-history.
+## To Do
 - add battery status for "Meter-Box-Device"
 
+## Change Log
+### 0.1.0
+ - Added fakegato-history
