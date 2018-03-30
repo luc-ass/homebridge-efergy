@@ -1,5 +1,5 @@
 {
-  "name": "homebridge-efergy",
+  "name": "homebridge-efergy-mg",
   "version": "0.0.1",
   "description": "Efergy support for Homebridge: https://github.com/nfarina/homebridge",
   "license": "ISC",
@@ -8,10 +8,10 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git://github.com/luc-ass/homebridge-efergy.git"
+    "url": "git://github.com/mylesgray/homebridge-efergy-mg.git"
   },
   "bugs": {
-    "url": "http://github.com/luc-ass/homebridge-efergy/issues"
+    "url": "http://github.com/mylesgray/homebridge-efergy-mg/issues"
   },
   "engines": {
     "node": ">=0.12.0",
@@ -19,6 +19,8 @@
   },
   "dependencies": {
     "request": "^2.69.0",
-    "util": ">= 0.10.3"
+    "util": ">= 0.10.3",
+    "homebridge-hue-utils": ">= 0.4.7",
+    "fakegato-history": "^0.4.3"
   }
 }

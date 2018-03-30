@@ -1,13 +1,19 @@
 var request = require("request");
 var inherits = require('util').inherits;
 var Service, Characteristic;
+var moment = require('moment');
 
 module.exports = function(homebridge) {
   Service = homebridge.hap.Service;
   Characteristic = homebridge.hap.Characteristic;
 
   homebridge.registerAccessory("homebridge-efergy", "Efergy", Efergy);
-
+  var FakeGatoHistoryService = require('fakegato-history')(homebridge);
+  //Fakegato-history masquerading as Eve Energy.
+  //Stores history on local filesystem of homebridge appliance
+  var loggingService = new FakeGatoHistoryService("energy", this, {
+    storage:'fs'
+  });
 
   function Efergy(log, config) {
     // configuration
@@ -20,7 +26,6 @@ module.exports = function(homebridge) {
 
     this.kWh_url = "http://www.energyhive.com/mobile_proxy/getEnergy?token=" + this.token + "&period=" + this.period + "&offset=" + this.offset;
     this.W_url = "http://www.energyhive.com/mobile_proxy/getCurrentValuesSummary?token=" + this.token;
-
   }
 
   // Custom Characteristics and service...
@@ -83,6 +88,10 @@ module.exports = function(homebridge) {
           var key = Object.keys(obj)[0];
           var data = obj[key];
           this.log('Read Total Conumption:', data, 'W');
+          loggingService.addEntry({
+            time: moment().unix(),
+            power: data
+          });
           callback(null, data);
         }
       }.bind(this))
@@ -104,24 +113,24 @@ module.exports = function(homebridge) {
     },
 
     getServices: function() {
-		    var that = this;
+      var that = this;
 
-		      var informationService = new Service.AccessoryInformation();
-		        informationService
-			         .setCharacteristic(Characteristic.Name, this.name)
-	    		     .setCharacteristic(Characteristic.Manufacturer, "Efergy")
-	    		     .setCharacteristic(Characteristic.Model, "Unknown")
-	    	       .setCharacteristic(Characteristic.SerialNumber, "1234567890");
+      var informationService = new Service.AccessoryInformation();
+      informationService
+      .setCharacteristic(Characteristic.Name, this.name)
+      .setCharacteristic(Characteristic.Manufacturer, "Efergy")
+      .setCharacteristic(Characteristic.Model, "Unknown")
+      .setCharacteristic(Characteristic.SerialNumber, "1234567890");
 
-			var myPowerService = new Efergy.PowerService("Power Functions");
-			myPowerService
-				.getCharacteristic(Efergy.PowerConsumption)
-				.on('get', this.getConsumption.bind(this));
+      var myPowerService = new Efergy.PowerService("Efergy");
       myPowerService
-        .getCharacteristic(Efergy.TotalConsumption)
-        .on('get', this.getTotalConsumption.bind(this));
+      .getCharacteristic(Efergy.PowerConsumption)
+      .on('get', this.getConsumption.bind(this));
+      myPowerService
+      .getCharacteristic(Efergy.TotalConsumption)
+      .on('get', this.getTotalConsumption.bind(this));
 
-			return [informationService, myPowerService];
-		}
-	}
+      return [informationService, myPowerService, loggingService];
+    }
+  }
 }
