@@ -87,7 +87,7 @@ module.exports = function(homebridge) {
           var obj = json[0].data[0];
           var key = Object.keys(obj)[0];
           var data = obj[key];
-          this.log('Read Total Conumption:', data, 'W');
+          this.log('Read Current Consumption:', data, 'W');
           loggingService.addEntry({
             time: moment().unix(),
             power: data
