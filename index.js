@@ -34,7 +34,7 @@ module.exports = function(homebridge) {
     this.setProps({
       format: Characteristic.Formats.FLOAT,
       maxValue: 999999999,
-      minValue: 1,
+      minValue: 0,
       minStep: 0.001,
       perms: [Characteristic.Perms.READ, Characteristic.Perms.NOTIFY]
     });
@@ -47,7 +47,7 @@ module.exports = function(homebridge) {
     this.setProps({
       format: Characteristic.Formats.FLOAT,
       maxValue: 999999999,
-      minValue: 1,
+      minValue: 0,
       minStep: 0.001,
       perms: [Characteristic.Perms.READ, Characteristic.Perms.NOTIFY]
     });
@@ -105,7 +105,7 @@ module.exports = function(homebridge) {
         }
         else {
           var json = JSON.parse(body);
-          var kWh = parseFloat(json['sum']);
+          var kWh = json['sum'];
           this.log('Read Total Consumption:', kWh, 'kWh today');
           callback(null, kWh);
         }
