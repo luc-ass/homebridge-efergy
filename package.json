@@ -1,6 +1,6 @@
 {
   "name": "homebridge-efergy-mg",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Efergy support for Homebridge: https://github.com/nfarina/homebridge",
   "license": "ISC",
   "keywords": [
