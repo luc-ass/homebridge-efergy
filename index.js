@@ -1,7 +1,9 @@
 var request = require("request");
+var os = require('os');
 var inherits = require('util').inherits;
 var Service, Characteristic;
 var moment = require('moment');
+var hostname = os.hostname();
 
 module.exports = function(homebridge) {
   Service = homebridge.hap.Service;
@@ -26,6 +28,10 @@ module.exports = function(homebridge) {
 
     this.kWh_url = "http://www.energyhive.com/mobile_proxy/getEnergy?token=" + this.token + "&period=" + this.period + "&offset=" + this.offset;
     this.W_url = "http://www.energyhive.com/mobile_proxy/getCurrentValuesSummary?token=" + this.token;
+
+    //Get data on first startup and poll every 5 mins
+    this.getLatest();
+    setInterval(this.getLatest.bind(this), 300000);
   }
 
   // Custom Characteristics and service...
@@ -63,6 +69,10 @@ module.exports = function(homebridge) {
   inherits(Efergy.PowerService, Service);
 
   Efergy.prototype = {
+
+    getLatest: function(callback){
+      this.getConsumption(function(){}.bind(this));
+    },
 
     httpRequest: function(url, method, callback) {
       request({
@@ -113,14 +123,12 @@ module.exports = function(homebridge) {
     },
 
     getServices: function() {
-      var that = this;
-
       var informationService = new Service.AccessoryInformation();
       informationService
       .setCharacteristic(Characteristic.Name, this.name)
       .setCharacteristic(Characteristic.Manufacturer, "Efergy")
       .setCharacteristic(Characteristic.Model, "Unknown")
-      .setCharacteristic(Characteristic.SerialNumber, "1234567890");
+      .setCharacteristic(Characteristic.SerialNumber, hostname + "-Efergy");
 
       var myPowerService = new Efergy.PowerService("Efergy");
       myPowerService
