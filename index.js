@@ -94,15 +94,20 @@ module.exports = function(homebridge) {
           // stupidly complex because of the way the
           // json is formated by the server...
           var json = JSON.parse(body);
-          var obj = json[0].data[0];
-          var key = Object.keys(obj)[0];
-          var data = obj[key];
-          this.log('Read Current Consumption:', data, 'W');
-          loggingService.addEntry({
-            time: moment().unix(),
-            power: data
-          });
-          callback(null, data);
+          if (json.error) {
+            this.log.error(json.error);
+            return;
+          } else {
+            var obj = json[0].data[0];
+            var key = Object.keys(obj)[0];
+            var data = obj[key];
+            this.log('Read Current Consumption:', data, 'W');
+            loggingService.addEntry({
+              time: moment().unix(),
+              power: data
+            });
+            callback(null, data);
+          }
         }
       }.bind(this))
     },
